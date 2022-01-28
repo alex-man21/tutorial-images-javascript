@@ -23,6 +23,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                pwd
             }
         }
         stage('clone_repo') {
@@ -32,7 +33,7 @@ pipeline {
 
                 script {
                     def rootDir = pwd
-                    def testModule = load "${rootDir}/testing.Groovy"
+                    def testModule = load "testing.Groovy"
                 }
             }
         }        
