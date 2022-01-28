@@ -30,7 +30,7 @@ pipeline {
                 echo 'not really cloning repo'
                 echo 'but it is initializing'
 
-                // script {
+                // script { 
                 //     def rootDir = pwd
                 //     def testModule = load "testing.Groovy"
                 // }
@@ -58,7 +58,8 @@ pipeline {
                 script {
                     def rootDir = pwd
                     def testModule = load "testing.Groovy"
-                    testModule.npmTest("inside groovy")
+                    // testModule.npmTest()
+                    testModule.mvnTest()
                 }
                     // npmTest("outside groovy")
                     // mvnTest()
