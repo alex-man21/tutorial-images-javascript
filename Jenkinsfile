@@ -40,6 +40,9 @@ pipeline {
             steps {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
     // some block
+                    def rootDir = pwd()
+                    pwd()
+                    def testModule = load "${rootDir}/testing.Groovy "
                     npmTest("helloWorld")
                     // mvnTest()
 
