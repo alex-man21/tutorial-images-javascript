@@ -12,6 +12,9 @@ def npmTest(message) {
     sh 'npx mocha --no-timeouts "test/*.test.js"'
 }
 
+def testingModule
+def rootDir
+
 pipeline {
     agent any
   tools { nodejs 'Node16.6.1' } // Pick your node version between 8, 10, 12, or 14
@@ -25,7 +28,6 @@ pipeline {
         stage('clone_repo') {
             steps {
                 echo 'not really cloning repo'
-                
             }
         }        
         stage('test_init') {
@@ -38,17 +40,19 @@ pipeline {
             //     sh 'echo "SSH passphrase is $SSH_CREDS"'
             // }
             steps {
-                Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
-    // some block
-                    def rootDir = pwd()
-                    pwd()
-                    def testModule = load "${rootDir}/testing.Groovy "
-                    npmTest("helloWorld")
-                    // mvnTest()
+                    rootDir = sh 'pwd'
+                    testModule = load "${rootDir}/testing.Groovy "
 
-                }
             }
             
+        }
+        stage('Applitools') {
+            Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
+// some block
+                npmTest("helloWorld")
+                // mvnTest()
+
+            }        
         }
     }
 }
