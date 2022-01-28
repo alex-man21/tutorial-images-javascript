@@ -28,6 +28,12 @@ pipeline {
         stage('clone_repo') {
             steps {
                 echo 'not really cloning repo'
+                echo 'but it is initializing'
+
+                script {
+                    def rootDir = pwd
+                    def testModule = load "${rootDir}/testing.Groovy"
+                }
             }
         }        
         // stage('test_init') {
@@ -46,8 +52,6 @@ pipeline {
             
         // }
         stage('Applitools') {
-            def rootDir = sh 'pwd'
-            def testModule = load "${rootDir}/testing.Groovy"
             
             Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
 // some block
