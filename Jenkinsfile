@@ -60,7 +60,7 @@ pipeline {
                     def testModule = load "testing.Groovy"
                     testModule.npmTest("inside groovy")
                 }
-                    npmTest("outside groovy")
+                    // npmTest("outside groovy")
                     // mvnTest()
              }
             }        
