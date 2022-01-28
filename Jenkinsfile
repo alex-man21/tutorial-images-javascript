@@ -12,8 +12,8 @@ def npmTest(message) {
     sh 'npx mocha --no-timeouts "test/*.test.js"'
 }
 
-def testingModule
-def rootDir
+// def testingModule
+// def rootDir
 
 pipeline {
     agent any
@@ -30,23 +30,25 @@ pipeline {
                 echo 'not really cloning repo'
             }
         }        
-        stage('test_init') {
-            // environment {
-            //     SSH_CREDS = "hello"
-            // }
-            // steps {
-            //     sh 'echo "SSH private key is located at $SSH_CREDS"'
-            //     sh 'echo "SSH user is $SSH_CREDS"'
-            //     sh 'echo "SSH passphrase is $SSH_CREDS"'
-            // }
-            steps {
-                    rootDir = sh 'pwd'
-                    testModule = load "${rootDir}/testing.Groovy "
-
-            }
+        // stage('test_init') {
+        //     // environment {
+        //     //     SSH_CREDS = "hello"
+        //     // }
+        //     // steps {
+        //     //     sh 'echo "SSH private key is located at $SSH_CREDS"'
+        //     //     sh 'echo "SSH user is $SSH_CREDS"'
+        //     //     sh 'echo "SSH passphrase is $SSH_CREDS"'
+        //     // }
+        //     steps {
+        //             // rootDir = sh 'pwd'
+        //             // testModule = load "${rootDir}/testing.Groovy "
+        //     }
             
-        }
+        // }
         stage('Applitools') {
+            def rootDir = sh 'pwd'
+            def testModule = load "${rootDir}/testing.Groovy"
+            
             Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
 // some block
                 npmTest("helloWorld")
