@@ -30,10 +30,10 @@ pipeline {
                 echo 'not really cloning repo'
                 echo 'but it is initializing'
 
-                script {
-                    def rootDir = pwd
-                    def testModule = load "testing.Groovy"
-                }
+                // script {
+                //     def rootDir = pwd
+                //     def testModule = load "testing.Groovy"
+                // }
             }
         }        
         // stage('test_init') {
@@ -55,8 +55,12 @@ pipeline {
             steps {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
     // some block
+                script {
+                    def rootDir = pwd
+                    def testModule = load "testing.Groovy"
                     testModule.npmTest("inside groovy")
-                    npmTest("helloWorld")
+                }
+                    npmTest("outside groovy")
                     // mvnTest()
              }
             }        
