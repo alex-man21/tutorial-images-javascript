@@ -23,7 +23,6 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                pwd
             }
         }
         stage('clone_repo') {
