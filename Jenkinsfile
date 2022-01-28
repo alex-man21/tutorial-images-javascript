@@ -29,23 +29,23 @@ pipeline {
             }
         }
         
-        stage('test_init') {
-            // environment {
-            //     SSH_CREDS = "hello"
-            // }
-            // steps {
-            //     sh 'echo "SSH private key is located at $SSH_CREDS"'
-            //     sh 'echo "SSH user is $SSH_CREDS"'
-            //     sh 'echo "SSH passphrase is $SSH_CREDS"'
-            // }
-            steps {
-                Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
-    // some block
-                    npmTest("helloWorld")
-                }
-            }
+    //     stage('test_init') {
+    //         // environment {
+    //         //     SSH_CREDS = "hello"
+    //         // }
+    //         // steps {
+    //         //     sh 'echo "SSH private key is located at $SSH_CREDS"'
+    //         //     sh 'echo "SSH user is $SSH_CREDS"'
+    //         //     sh 'echo "SSH passphrase is $SSH_CREDS"'
+    //         // }
+    //         steps {
+    //             Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
+    // // some block
+    //                 npmTest("helloWorld")
+    //             }
+    //         }
             
-        }
+    //     }
     }
 }
 
