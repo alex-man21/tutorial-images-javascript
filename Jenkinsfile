@@ -43,14 +43,15 @@ pipeline {
             steps {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
 
-                    // script {
-                    //     def testModule = load "testing.Groovy"
+                    script {
+                        def testModule = load "testing.Groovy"
 
-                    //     testModule.testSubGroovyFile()
+                        // testModule.testSubGroovyFile()
 
-                    // }
+                    }
+                    testModule.testSubGroovyFile()
 
-                    sh "${scripts.testSubGroovyFile()}"
+                    // sh "${scripts.testSubGroovyFile()}"
                     // npmTest("outside groovy")
                     // mvnTest()
              }
