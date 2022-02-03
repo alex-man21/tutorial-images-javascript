@@ -1,0 +1,81 @@
+@Library('jenkins-shared-libs') _
+//if new job/branch run job once using line #1 to set parameters in libsTest.InitPipeline()
+
+pipeline {
+  agent { label 'aem' }
+  tools { nodejs 'node8' } // Pick your node version between 8, 10, 12, or 14
+
+ stages {
+    stage('Initialization') {
+      steps {
+        deleteDir()
+        checkout scm
+        script {
+          echo "[INFO] Loading JSON configuration from : ${env.WORKSPACE}/pipeline.json"
+          inputFile = readFile("${env.WORKSPACE}/pipeline.json")
+          parsedJson =  readJSON text: inputFile
+          echo "[INFO] Done Loading JSON configuration"
+          libsTest.InitPipeline()
+        }
+      }
+    }
+
+   // stage('Build Maven'){
+   //   steps{
+   //     BuildMvn(parsedJson)
+            /*
+                This call gets sent to multiple groovy files
+                - customer tried this but there's an issue where the dynamic processing of the groovy file can't tell what's what...
+
+            */
+   //   }
+  //  }
+ 
+   /*
+   stage("Applitools") {
+            steps {
+             script{
+               mvnHome = tool 'maven-3.3.9'
+               }
+             sh script: "${mvnHome}/bin/mvn clean test -Dmaven.test.failure.ignore=true \
+              -Dmaven.test.error.ignore=true -Pselenium,send-qa-report \
+              -Denv=${params.TEST_ENV} -Dfeature=Smoke_Browser -Dbrowser=firefox -Dgridurl=http://cskpcloudxp1501.cloud.kp.org:7777/wd/hub"
+             withCredentials([string(credentialsId: 'Applitools-Key', variable: 'Applitools-Key')]) {
+             Applitools(notifyByCompletion: true, serverURL: 'https://eyes.applitools.com', applitoolsApiKey:'${Applitools-Key}') 
+              }
+            }
+        }
+    */
+   stage ('Test me') {
+      steps {
+                     script{
+               mvnHome = tool 'maven-3.3.9'
+               }         
+        sh "mvn clean test"
+      }
+   }
+   
+        
+   
+    stage('Build Pipeline Extension'){
+      when {
+        anyOf { branch 'master'}
+        anyOf { environment name: 'operation', value: 'build-pipeline-extension' }
+      }
+      steps{
+          BuildPipelineExtension(parsedJson)
+      }
+    }
+    stage('Deploy TO Dev'){
+      when {
+        anyOf{
+          environment name: 'operation', value: 'deploy-to-dev'
+        }
+      }
+      steps{
+        echo "[INFO] Stage skipped because code needs to be updated to be AEM 6.5 compatible"
+        DeployAem(parsedJson, params.environment, params.operation)
+      }
+    }
+  }
+}

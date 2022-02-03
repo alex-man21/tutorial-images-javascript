@@ -1,0 +1,98 @@
+{
+  "product-name": "productzero",
+  "teams-channel": "",
+  "application-type": "aem",
+  "default-emails": [
+  ],
+  "approval-override-group": "",
+  "stages": {
+    "maven-build": {
+      "maven-version": "maven-3.5.2",
+      "artifact-directory": "target",
+      "test-result-xml": "**/surefire-reports/TEST-*.xml",
+      "maven-settings": "",
+      "java-library": true,
+      "cobertura": false,
+      "clover": false,
+      "jacoco:": true,
+      "jacoco-report-path": "target/jacoco.exec",
+      "sonar": true,
+      "clover-report-path": "target/site/clover/clover.xml",
+      "cobertura-report-path": "ui.resources/coverage/cobertura.xml",
+      "ts-lcov-report-path": "ui.resources/coverage/report-lcovonly.txt",
+      "sonar-coverage-exclusions": [],
+      "sonar-exclusions": [
+        "core/**/*",
+        "ui.apps/**/*",
+        "it.tests/**/*"
+      ],
+      "skip-test-flag": true,
+      "html-reports": {
+        "pipeline-coverage-report": {
+          "report-dir": "ui.resources/coverage",
+          "html-file": "index.html"
+        }
+      }
+    },
+    "smoke-test": {
+      "functional": {
+        "framework": "bobcat",
+        "saucelabs": false,
+        "platform": "WIN10",
+        "browserName": "chrome",
+        "version": "latest",
+        "bobcat-params": [
+          "-Dwebdriver.url=http://xlzvbta0094x.lvdc.kp.org:4445/wd/hub",
+          "-Dwebdriver.cap.platform=WINDOWS",
+          "-Dwebdriver.cap.browserName=chrome"
+        ],
+        "parallel-testing": true,
+        "test-suite-directory": "it.tests",
+        "test-report-publisher": {
+          "report-path": "it.tests/bobcat/target/cucumber-parallel/",
+          "parallel-testing": true,
+          "publisher-type": "cucumber"
+        }
+      }
+    },
+    "regression-test": {
+      "regression-plan": {
+        "functional": {
+          "framework": "bobcat",
+          "bobcat-params": [
+            "-Dwebdriver.url=http://xlzvbta0094x.lvdc.kp.org:4445/wd/hub",
+            "-Dwebdriver.cap.platform=WINDOWS",
+            "-Dwebdriver.cap.browserName=chrome"
+          ],
+          "test-suite-directory": "it.tests",
+          "parallel-testing": true,
+          "test-report-publisher": {
+            "publisher-type": "cucumber",
+            "report-path": "it.tests/bobcat/target/cucumber-parallel",
+            "parallel-testing": true
+          }
+        }
+      },
+      "regression-environments": {
+        "ss018": {
+          "run-interval": "0 4 * * 2,4"
+        }
+      }
+    },
+    "aem-deploy": {
+      "master": {
+        "ci-environments": [
+          "ss018",
+          "kpod2"
+        ]
+      }
+    },
+    "whitehat-analysis": {
+      "cron-scan-interval": "30 20 * * *",
+      "nexus-iq-app-id": "",
+      "scan-branch": "master",
+      "jira-project": "",
+      "ar-release-version": "AR 100"
+    }
+  }
+}
