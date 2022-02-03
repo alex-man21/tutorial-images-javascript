@@ -34,7 +34,7 @@ pipeline {
         stage('load scripts') {
             steps {
                 script {
-                  scripts=load "testing.Groovy"  
+                  def scripts=load "testing.Groovy"  
                 }
                 echo "loading testing.Groovy"
             }
@@ -49,6 +49,7 @@ pipeline {
                         // testModule.testSubGroovyFile()
 
                     }
+                    pwd
                     testModule.testSubGroovyFile()
 
                     // sh "${scripts.testSubGroovyFile()}"
