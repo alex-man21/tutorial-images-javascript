@@ -36,6 +36,7 @@ pipeline {
                 script {
                   scripts=load "testing.Groovy"  
                 }
+                echo "loading testing.Groovy"
             }
         }    
         stage('Applitools') {
