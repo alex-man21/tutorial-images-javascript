@@ -1,10 +1,13 @@
 // evaluate(new File("subTesting.groovy"))
-import subTesting
+// import subTesting
+def subTest
 
 def testSubGroovyFile() {
-    def subTest = new subTesting()
-
+    subTest = load "subTesting.groovy"
     subTest.npmTest()
+    // test = new subTesting()
+
+    // test.npmTest()
 }
 
 return this
