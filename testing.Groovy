@@ -2,7 +2,7 @@
 import subTesting
 
 def testSubGroovyFile() {
-    def subTest = new subTest()
+    def subTest = new subTesting()
 
     subTest.npmTest()
 }
