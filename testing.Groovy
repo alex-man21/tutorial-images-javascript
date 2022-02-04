@@ -1,11 +1,9 @@
-// evaluate(new File("subTesting.groovy"))
 import subTesting
-// def subTest
 
 def testSubGroovyFile() {
-    test = new subTesting()
+    subTest = new subTesting()
 
-    test.npmTest()
+    subTest.mvnTest()
 }
 
 return this
