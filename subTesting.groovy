@@ -1,4 +1,5 @@
-class subTest {
+
+class subTesting {
     def npmTest() {
         echo 'testing javascript'
         sh 'npm i'
@@ -7,4 +8,4 @@ class subTest {
 
 }
 
-return subTest
+return subTesting
