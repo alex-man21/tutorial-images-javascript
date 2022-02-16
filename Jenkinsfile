@@ -42,7 +42,7 @@ pipeline {
                         // applitools.mvn()
                         // Applitools(this).mvn()
                     }
-                    Applitools(this).mvn()
+                    ApplitoolsTest(this).mvn()
                     // externalScript()
                 }
             }
