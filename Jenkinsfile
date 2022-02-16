@@ -34,7 +34,7 @@ pipeline {
                         // }
                         // externalScript()
                     }
-                    applitools.test()
+                    applitools.test("test")
 
                 }
             }        
