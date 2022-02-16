@@ -19,6 +19,7 @@ pipeline {
             steps {
                 script {
                     testingGroovy = load "testing.groovy"
+                    testingGroovy.checkout()
                 }
                 message("inside applitools sharedlib + init stage!")
             }
