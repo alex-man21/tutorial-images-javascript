@@ -1,8 +1,6 @@
 
 def testSubGroovyFile() {
-    subTest = new subTesting()
-
-    subTest.mvnTest()
+    echo "test sub groovy file"
 }
 
 def echo() {
