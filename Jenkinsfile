@@ -3,6 +3,7 @@
 import org.foo.*
 
 def testingGroovy
+// def utils = new Utilities(this)
 
 pipeline {
     agent any
@@ -26,7 +27,7 @@ pipeline {
             steps {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
-                        // testingGroovy.echo();
+                        testingGroovy.echo();
                         // try {
                         //     testingGroovy.mvnTest();
                         // } catch (err) {
