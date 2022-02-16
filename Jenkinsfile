@@ -1,7 +1,6 @@
 
 @Library('sharedlibs') _ 
 import org.foo.*
-import org.foo.Applitools
 
 def testingGroovy
 // def applitools = new Applitools(this)
