@@ -1,5 +1,8 @@
 
+@Library('sharedlibs')_
+
 def gv
+
 pipeline {
     agent any
   tools { nodejs 'Node16.6.1' } // Pick your node version between 8, 10, 12, or 14
@@ -24,6 +27,7 @@ pipeline {
                         gv.echo();
                         gv.mvnTest();
                     }
+                    applitools("My first shared library variable!")
              }
             }        
         }
