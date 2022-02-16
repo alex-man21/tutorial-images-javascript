@@ -7,8 +7,9 @@ def echo() {
     echo "inside testing.groovy"
 }
 
-def pwd() {
+def checkDirectory() {
     sh 'pwd'
+    sh 'ls -ltr'
 }
 
 def mvnTest() {
