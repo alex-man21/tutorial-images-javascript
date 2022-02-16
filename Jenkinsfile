@@ -38,9 +38,11 @@ pipeline {
             steps{
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
+                        sh "hi there"
                         // applitools.mvn()
-                        Applitools(this).mvn()
+                        // Applitools(this).mvn()
                     }
+                    Applitools(this).mvn()
                     // externalScript()
                 }
             }
