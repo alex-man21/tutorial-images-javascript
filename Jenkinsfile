@@ -3,7 +3,6 @@
 import org.foo.*
 
 def testingGroovy
-def utils = new Utilities(this)
 
 pipeline {
     agent any
