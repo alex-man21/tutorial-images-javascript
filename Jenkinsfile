@@ -3,7 +3,7 @@
 import org.foo.*
 
 def testingGroovy
-// def utils = new Utilities(this)
+// def applitools = new Applitools(this)
 
 pipeline {
     agent any
@@ -20,26 +20,29 @@ pipeline {
                 script {
                     testingGroovy = load "testing.groovy"
                     testingGroovy.checkout()
+                    def applitools = new org.foo.Applitools(this)
                 }
                 message("inside applitools sharedlib + init stage!")
             }
         }
         stage('build') {
             steps {
-                Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
+                        testingGroovy.cleanInstall()
                         testingGroovy.echo();
                         testingGroovy.checkDirectory();
-                        // try {
-                        //     testingGroovy.mvnTest();
-                        // } catch (err) {
-                        //     echo err.getMessage();
-                        // }
                     }
-                    externalScript()
-
-                }
             }        
+        }
+        stage('test') {
+            steps{
+                Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
+                    script {
+                        applitools.mvn()
+                    }
+                    // externalScript()
+                }
+            }
         }
     }
 }
