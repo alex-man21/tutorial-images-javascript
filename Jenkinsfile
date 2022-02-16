@@ -32,9 +32,8 @@ pipeline {
                         // } catch (err) {
                         //     echo err.getMessage();
                         // }
-                        // externalScript()
+                        externalScript()
                     }
-                    applitools.test("test")
 
                 }
             }        
