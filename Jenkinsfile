@@ -20,7 +20,7 @@ pipeline {
                 script {
                     testingGroovy = load "testing.groovy"
                     testingGroovy.checkout()
-                    def applitools = new Applitools(this)
+                    // def applitools = new Applitools(this)
                 }
                 message("inside applitools sharedlib + init stage!")
             }
@@ -38,7 +38,8 @@ pipeline {
             steps{
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
-                        applitools.mvn()
+                        // applitools.mvn()
+                        Applitools(this).mvn()
                     }
                     // externalScript()
                 }
