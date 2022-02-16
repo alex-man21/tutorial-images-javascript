@@ -2,7 +2,7 @@
 @Library('sharedlibs') _ 
 import org.foo.*
 
-def testingGroovy
+def demo
 // def applitools = new Applitools(this)
 
 pipeline {
@@ -18,8 +18,8 @@ pipeline {
         stage('init') {
             steps {
                 script {
-                    testingGroovy = load "testing.groovy"
-                    testingGroovy.checkout()
+                    demo = load "testing.groovy"
+                    demo.checkout()
                     // def applitools = new Applitools(this)
                 }
                 message("inside applitools sharedlib + init stage!")
@@ -28,9 +28,9 @@ pipeline {
         stage('build') {
             steps {
                     script {
-                        testingGroovy.cleanInstall()
-                        testingGroovy.echo();
-                        testingGroovy.checkDirectory();
+                        demo.cleanInstall()
+                        demo.echo();
+                        demo.checkDirectory();
                     }
             }        
         }
@@ -38,12 +38,10 @@ pipeline {
             steps{
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
-                        sh "hi there"
-                        // applitools.mvn()
-                        Applitools(this).mvn()
+                        // sh "hi there"
+                        demo.mvnTest()
                     }
-                    // ApplitoolsTest(this).mvn()
-                    // externalScript()
+                    ExternalGroovy()
                 }
             }
         }
