@@ -22,6 +22,7 @@ pipeline {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
                         gv.echo();
+                        gv.mvnTest();
                     }
              }
             }        
