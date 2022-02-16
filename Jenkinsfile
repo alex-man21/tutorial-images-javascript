@@ -11,11 +11,13 @@ pipeline {
             }
         }
         stage('init') {
-            script {
-                gv = load "testing.groovy"
+            steps {
+                script {
+                    gv = load "testing.groovy"
+                }
             }
         }
-        stage('Applitools') {
+        stage('build') {
             steps {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
