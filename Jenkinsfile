@@ -40,9 +40,9 @@ pipeline {
                     script {
                         sh "hi there"
                         // applitools.mvn()
-                        // Applitools(this).mvn()
+                        Applitools(this).mvn()
                     }
-                    ApplitoolsTest(this).mvn()
+                    // ApplitoolsTest(this).mvn()
                     // externalScript()
                 }
             }
