@@ -31,9 +31,8 @@ pipeline {
                         // } catch (err) {
                         //     echo err.getMessage();
                         // }
-
+                        externalScript()
                     }
-                    externalScript()
                 }
             }        
         }
