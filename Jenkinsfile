@@ -1,5 +1,5 @@
 
-@Library('sharedlibs')_ 
+@Library('sharedlibs') _ 
 import org.foo.*
 
 def testingGroovy
@@ -28,11 +28,11 @@ pipeline {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
                         testingGroovy.echo();
-                        // try {
-                        //     testingGroovy.mvnTest();
-                        // } catch (err) {
-                        //     echo err.getMessage();
-                        // }
+                        try {
+                            testingGroovy.mvnTest();
+                        } catch (err) {
+                            echo err.getMessage();
+                        }
                     }
                     externalScript()
 
