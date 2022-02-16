@@ -1,8 +1,8 @@
 
-@Library('sharedlibs')_
-import org.foo.applitools
+@Library('sharedlibs')_ import org.foo.*
 
-def gv
+def testingGroovy
+def utils = new Utilities(this)
 
 pipeline {
     agent any
@@ -17,7 +17,7 @@ pipeline {
         stage('init') {
             steps {
                 script {
-                    gv = load "testing.groovy"
+                    testingGroovy = load "testing.groovy"
                 }
                 message("inside applitools sharedlib + init stage!")
             }
@@ -26,14 +26,14 @@ pipeline {
             steps {
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     script {
-                        gv.echo();
+                        // testingGroovy.echo();
                         // try {
-                        //     gv.mvnTest();
+                        //     testingGroovy.mvnTest();
                         // } catch (err) {
                         //     echo err.getMessage();
                         // }
-                        externalScript()
                     }
+                    externalScript()
 
                 }
             }        
