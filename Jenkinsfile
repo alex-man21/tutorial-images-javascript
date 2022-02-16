@@ -18,7 +18,7 @@ pipeline {
                 script {
                     gv = load "testing.groovy"
                 }
-                applitools("inside applitools sharedlib + init stage!")
+                message("inside applitools sharedlib + init stage!")
             }
         }
         stage('build') {
