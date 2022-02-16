@@ -1,6 +1,7 @@
 
 @Library('sharedlibs') _ 
 import org.foo.*
+import org.foo.Applitools
 
 def testingGroovy
 // def applitools = new Applitools(this)
@@ -20,7 +21,7 @@ pipeline {
                 script {
                     testingGroovy = load "testing.groovy"
                     testingGroovy.checkout()
-                    def applitools = new org.foo.Applitools(this)
+                    def applitools = new Applitools(this)
                 }
                 message("inside applitools sharedlib + init stage!")
             }
