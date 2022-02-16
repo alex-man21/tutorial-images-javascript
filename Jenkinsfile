@@ -1,5 +1,6 @@
 
 @Library('sharedlibs')_
+import org.foo.applitools
 
 def gv
 
@@ -31,8 +32,10 @@ pipeline {
                         // } catch (err) {
                         //     echo err.getMessage();
                         // }
-                        externalScript()
+                        // externalScript()
                     }
+                    applitools.test()
+
                 }
             }        
         }
