@@ -1,5 +1,6 @@
 
-@Library('sharedlibs')_ import org.foo.*
+@Library('sharedlibs')_ 
+import org.foo.*
 
 def testingGroovy
 def utils = new Utilities(this)
