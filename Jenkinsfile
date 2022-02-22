@@ -1,9 +1,5 @@
 
-@Library('sharedlibs') _ 
-import org.foo.*
-
-def demo
-// def applitools = new Applitools(this)
+@Library('sharedlibs') _
 
 pipeline {
     agent any
@@ -20,7 +16,6 @@ pipeline {
                 script {
                     demo = load "testing.groovy"
                     demo.checkout()
-                    // def applitools = new Applitools(this)
                 }
                 message("inside applitools sharedlib + init stage!")
             }
@@ -37,10 +32,7 @@ pipeline {
         stage('test') {
             steps{
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
-                    script {
-                        // sh "hi there"
-                        demo.mvnTest()
-                    }
+                    message("Running applitools test")
                     ExternalGroovy()
                 }
             }
