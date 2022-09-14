@@ -33,8 +33,8 @@ pipeline {
             steps{
                 script {
                     writeFile file: "./.applitools/BATCH_ID", text: "$ghprbActualCommit"
-                    sh 'ls -l ./.applitools/BATCH_ID'
-                    sh 'cat ./.applitools/BATCH_ID'
+                    sh "ls -l ./.applitools/BATCH_ID"
+                    sh "cat ./.applitools/BATCH_ID"
                 }
 
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
