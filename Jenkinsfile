@@ -32,7 +32,7 @@ pipeline {
         stage('test') {
             steps{
                 script {
-                    writeFile file: "./.applitools/BATCH_ID", text: "$ghprbActualCommit"
+                    writeFile file: "./.applitools/BATCH_ID", text: ${GIT_COMMIT}
                     sh "ls -l ./.applitools/BATCH_ID"
                     sh "cat ./.applitools/BATCH_ID"
                 }
