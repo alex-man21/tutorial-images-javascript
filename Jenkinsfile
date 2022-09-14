@@ -31,11 +31,11 @@ pipeline {
         }
         stage('test') {
             steps{
-                script {
-                    writeFile file: "./.applitools/BATCH_ID", text: ${GIT_COMMIT}
-                    sh "ls -l ./.applitools/BATCH_ID"
-                    sh "cat ./.applitools/BATCH_ID"
-                }
+                // script {
+                //     writeFile file: "./.applitools/BATCH_ID", text: ${GIT_COMMIT}
+                //     sh "ls -l ./.applitools/BATCH_ID"
+                //     sh "cat ./.applitools/BATCH_ID"
+                // }
 
                 Applitools(applitoolsApiKey: 'aSDUdmvAP1IwKVLmI996KxOk6MT3a2ZRaDGWRrn8Xh00110', notifyByCompletion: false, serverURL: 'https://eyes.applitools.com') {
                     message("Running applitools test")
